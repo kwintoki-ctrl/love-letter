@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +8,14 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      background: linear-gradient(to bottom, #ffb6c1, #ffc0cb);
+      background: #ffb6c1; /* powder pink */
       color: #2d2d2d;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
       text-align: center;
       padding: 20px;
-      
     }
     .letter {
       background: rgba(255, 255, 255, 0.9);
@@ -25,6 +25,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       z-index: 2;
       position: relative;
+      margin-top: 20px;
     }
     h1 {
       font-size: 2em;
@@ -38,7 +39,7 @@
     }
     .unmute {
       margin-top: 20px;
-      background: #f8b500;
+      background: #f06292;
       color: white;
       border: none;
       padding: 12px 20px;
@@ -47,9 +48,8 @@
       cursor: pointer;
     }
     .unmute:hover {
-      background: #e09d00;
+      background: #ec407a;
     }
-
     .heart {
       position: fixed;
       bottom: -50px;
@@ -75,10 +75,9 @@
   <iframe
     id="bg-music-iframe"
     width="0" height="0"
-    src="https://www.youtube.com/embed/Cu0nyIWCkC8?autoplay=1&loop=1&playlist=VIDEO_ID&mute=1"
+    src="https://www.youtube.com/embed/Cu0nyIWCkC8?autoplay=1&loop=1&playlist=Cu0nyIWCkC8&mute=1"
     frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
+    allow="autoplay; encrypted-media">
   </iframe>
 
   <script>
@@ -107,7 +106,15 @@ XOXO`;
         setTimeout(typeWriter, 30);
       }
     }
-    window.onload = typeWriter;
+    window.onload = function() {
+      typeWriter();
+
+      // auto unmute on desktop
+      if (!/Mobi|Android/i.test(navigator.userAgent)) {
+        const iframe = document.getElementById("bg-music-iframe");
+        iframe.src = iframe.src.replace("mute=1", "mute=0");
+      }
+    };
 
     function unmuteAudio() {
       const iframe = document.getElementById("bg-music-iframe");
@@ -130,3 +137,4 @@ XOXO`;
   </script>
 </body>
 </html>
+```
