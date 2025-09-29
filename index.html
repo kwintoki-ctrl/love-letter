@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +8,7 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      background: linear-gradient(-45deg, #ffb6c1, #ffd1dc, #ffe4e1, #ffc1cc);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      background: #ffb6c1; /* powder pink */
       color: #2d2d2d;
       display: flex;
       justify-content: center;
@@ -19,12 +17,6 @@
       text-align: center;
       padding: 20px;
     }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .letter {
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
@@ -38,13 +30,6 @@
     h1 {
       font-size: 2em;
       margin-bottom: 20px;
-      animation: heartbeat 2s infinite;
-    }
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.1); }
-      50% { transform: scale(0.95); }
-      75% { transform: scale(1.05); }
     }
     p {
       font-size: 1.2em;
@@ -90,7 +75,7 @@
   <iframe
     id="bg-music-iframe"
     width="0" height="0"
-    src="https://www.youtube.com/embed/oAW0ZmBMSoA?autoplay=1&loop=1&playlist=oAW0ZmBMSoA&mute=1"
+    src="https://www.youtube.com/embed/Cu0nyIWCkC8?autoplay=1&loop=1&playlist=Cu0nyIWCkC8&mute=1"
     frameborder="0"
     allow="autoplay; encrypted-media">
   </iframe>
@@ -111,7 +96,9 @@ I want to be there not just in the happy times but also through our lowest momen
 Please stay with me as we figure everything out, okay? I want to find all the how’s with you—and only you. I don’t want anybody else, hun.
 
 I love you so much, my Wawis.
-XOXO`;
+XOXO
+
+September 29, 2025`;
 
     let i = 0;
     function typeWriter() {
@@ -121,15 +108,7 @@ XOXO`;
         setTimeout(typeWriter, 30);
       }
     }
-    window.onload = function() {
-      typeWriter();
-
-      // auto unmute on desktop
-      if (!/Mobi|Android/i.test(navigator.userAgent)) {
-        const iframe = document.getElementById("bg-music-iframe");
-        iframe.src = iframe.src.replace("mute=1", "mute=0");
-      }
-    };
+    window.onload = typeWriter;
 
     function unmuteAudio() {
       const iframe = document.getElementById("bg-music-iframe");
@@ -152,4 +131,4 @@ XOXO`;
   </script>
 </body>
 </html>
-
+```
