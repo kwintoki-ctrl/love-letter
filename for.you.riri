@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background: linear-gradient(to bottom, #fceabb, #f8b500);
+      color: #2d2d2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+    .letter {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+      position: relative;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6em;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+    .unmute {
+      margin-top: 20px;
+      background: #f8b500;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .unmute:hover {
+      background: #e09d00;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      color: rgba(255, 0, 80, 0.7);
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      z-index: 1;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter">
+    <h1>To My Love ❤️</h1>
+    <p id="letter-text"></p>
+    <button class="unmute" onclick="unmuteAudio()">🔊 Tap to Hear Music</button>
+  </div>
+
+  <!-- YouTube embed for “First Date Song” -->
+  <iframe
+    id="bg-music-iframe"
+    width="0" height="0"
+    src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&loop=1&playlist=VIDEO_ID&mute=1"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    const text = `My Dearest Riri,
+
+I want to start this letter by saying thank you for everything that happened last week while we were together. I’m so deeply grateful for all of it, and it makes my heart very, very happy knowing that you’re willing to try again—this time not just working on our relationship, but also on ourselves.
+
+It makes me emotional reminiscing about how we spent the whole week together. It was the perfect mix of happiness, kilig, sadness, and most of all, love—the kind of love that overcomes everything and brings us closer than ever.
+
+I remember when we were cleaning up after setting up your table and came across your old diary (while there's an auto play song playing in the background that really relates on what is happening). It felt like such a perfect coincidence, like something straight out of a movie. After this week, I just love you more than ever. I want to court you again, suyuin, baby you, mag pa-baby din, and shower you with affection all day long. That’s why I’ve been missing you a little extra yesterday—I really miss being with you all day. Right now, I’m trying to keep it low-key, because even I might get overwhelmed! HAHAHA.
+
+I want you to know how grateful I am to have you, and how thankful I am that you love me—not because you have to, but because you choose to. I’m not going to waste anything anymore. I want to cherish every moment we spend together. I want to be the one who can give a shoulder to lean on, the one who wipes not just your tears but also your sweat after we do something silly or after we play some random, cute physical games.
+
+I want to be there not just in the happy times but also through our lowest moments—just like I promised when we were together, holding our promise ring like I was proposing to you. HAHAHA. That’s honestly the sweetest, cutest thing I’ve ever done from my perspective—all of that was real, and I meant it with all of my heart.
+
+Please stay with me as we figure everything out, okay? I want to find all the how’s with you—and only you. I don’t want anybody else, hun.
+
+I love you so much, my Wawis.
+XOXO`;
+
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("letter-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+      }
+    }
+    window.onload = typeWriter;
+
+    function unmuteAudio() {
+      const iframe = document.getElementById("bg-music-iframe");
+      let src = iframe.src;
+      if (!src.includes("mute=0")) {
+        iframe.src = src.replace("mute=1", "mute=0");
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 800);
+  </script>
+</body>
+</html>
