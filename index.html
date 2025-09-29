@@ -7,7 +7,7 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      background: linear-gradient(-45deg, #ffb6c1, #ffd1dc, #ffe4e1, #ffc1cc); 
+      background: linear-gradient(-45deg, #ffb6c1, #ffd1dc, #ffe4e1, #ffc1cc);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       color: #2d2d2d;
@@ -24,7 +24,7 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    
+
     .letter {
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
@@ -34,10 +34,11 @@
       z-index: 2;
       position: relative;
     }
+
     h1 {
       font-size: 2em;
       margin-bottom: 20px;
-      animation: heartbeat 1.5s infinite;
+      animation: heartbeat 2s infinite;
     }
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
@@ -45,13 +46,14 @@
       50% { transform: scale(0.95); }
       75% { transform: scale(1.05); }
     }
-    
+
     p {
       font-size: 1.2em;
       line-height: 1.6em;
       text-align: left;
       white-space: pre-wrap;
     }
+
     .unmute {
       margin-top: 20px;
       background: #f8b500;
@@ -65,6 +67,7 @@
     .unmute:hover {
       background: #e09d00;
     }
+
     .heart {
       position: fixed;
       bottom: -50px;
@@ -77,22 +80,28 @@
       from { transform: translateY(0) scale(1); opacity: 1; }
       to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
+
+    /* Secret message style */
     .secret-message {
-      font-size: 1.2em;
-      color: #e91e63;
-      margin-top: 15px;
-      animation: fadeInOut 2s ease;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+      color: #ff4d6d;
+      opacity: 0;
+      animation: fadeOut 2s forwards;
     }
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; }
+    @keyframes fadeOut {
+      0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+      30% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+      70% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
     }
   </style>
 </head>
 <body>
-  div class="letter" onclick="showSecretMessage()">
+  <div class="letter" onclick="showSecretMessage()">
     <h1>To My Riri ❤️</h1>
     <p id="letter-text"></p>
     <button class="unmute" onclick="unmuteAudio()">🔊 Tap to Hear Music</button>
@@ -137,19 +146,11 @@ XOXO`;
     window.onload = typeWriter;
 
     function unmuteAudio() {
-      const audio = document.getElementById("bg-music");
-      audio.play();
-    }
-
-    // Mobile auto-play on first tap anywhere
-    function enableMobileMusic() {
-      const audio = document.getElementById("bg-music");
-      document.body.addEventListener("touchstart", () => {
-        audio.play();
-      }, { once: true });
-    }
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      enableMobileMusic();
+      const iframe = document.getElementById("bg-music-iframe");
+      let src = iframe.src;
+      if (!src.includes("mute=0")) {
+        iframe.src = src.replace("mute=1", "mute=0");
+      }
     }
 
     function createHeart() {
