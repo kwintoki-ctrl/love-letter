@@ -92,16 +92,21 @@
   </style>
 </head>
 <body>
-  <div class="letter" onclick="showSecretMessage()">
+  div class="letter" onclick="showSecretMessage()">
     <h1>To My Riri ❤️</h1>
     <p id="letter-text"></p>
     <button class="unmute" onclick="unmuteAudio()">🔊 Tap to Hear Music</button>
   </div>
 
-  <!-- Local MP3 -->
-  <audio id="bg-music" loop>
-    <source src="firstdatesong.mp3" type="audio/mpeg">
-  </audio>
+  <!-- YouTube embed for “First Date Song” -->
+  <iframe
+    id="bg-music-iframe"
+    width="0" height="0"
+    src="https://www.youtube.com/embed/oAW0ZmBMSoA?autoplay=1&loop=1&playlist=oAW0ZmBMSoA&mute=1"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
 
   <script>
     const text = `My Dearest Riri,
